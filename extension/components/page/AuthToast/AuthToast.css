@@ -26,7 +26,7 @@
   flex-shrink: 0;
   align-self: stretch;
   width: 8px;
-  background: #f5b81f;
+  background: #00aaff;
 }
 
 .auth-toast-icon {
@@ -34,7 +34,7 @@
   width: 30px;
   height: 30px;
   margin-left: 10px;
-  color: #f5b81f;
+  color: #00aaff;
 }
 
 .auth-toast-content {
@@ -93,7 +93,7 @@
 .auth-toast-timer-bar {
   height: 100%;
   width: 100%;
-  background: #f5b81f;
+  background: #00aaff;
   transform-origin: left center;
   animation-name: auth-toast-timer-deplete;
   animation-timing-function: linear;

@@ -9,6 +9,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { storageEvent } from "@/test/storage";
 import type { Session } from "@supabase/supabase-js";
 import type {
   ProblemReview,
@@ -49,6 +50,11 @@ vi.mock("@/lib/dashboard/repository", () => ({
   ),
   verifyDashboardOtp: repository.verifyDashboardOtp,
 }));
+
+vi.mock("@/lib/dashboard/profiles", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/lib/dashboard/profiles")>();
+  return { PROFILES: [...actual.PROFILES, { ...actual.PROFILES[0], id: "focus", name: "Focus" }] };
+});
 
 function deferred<T>() {
   let resolve!: (value: T) => void;
@@ -108,12 +114,16 @@ function archive(userId: string): SubmissionArchive {
 function Probe() {
   const {
     archives,
+    activeProfile,
+    setActiveProfileId,
     loadArchive,
     problems,
     sessionUserId,
   } = useDashboard();
   return (
     <div>
+      <span data-testid="profile">{activeProfile.id}</span>
+      <button onClick={() => setActiveProfileId("focus")}>Use focus profile</button>
       <span data-testid="user">{sessionUserId ?? "none"}</span>
       <span data-testid="problems">
         {problems.map((problem) => problem.problemTitle).join(",")}
@@ -147,6 +157,21 @@ describe("DashboardProvider account isolation", () => {
         setItem: (key: string, value: string) => storage.set(key, value),
       },
     });
+  });
+
+  it("restores, persists, and synchronizes the profile with the stable key", async () => {
+    repository.getDashboardSession.mockResolvedValue(null);
+    window.localStorage.setItem("dashboard:preferences:profile", "focus");
+    render(<DashboardProvider><Probe /></DashboardProvider>);
+    await waitFor(() => expect(screen.getByTestId("profile").textContent).toBe("focus"));
+    act(() => window.dispatchEvent(storageEvent({
+      key: "dashboard:preferences:profile", newValue: "general", storageArea: window.localStorage,
+    })));
+    expect(screen.getByTestId("profile").textContent).toBe("general");
+    fireEvent.click(screen.getByRole("button", { name: "Use focus profile" }));
+    expect(window.localStorage.getItem("dashboard:preferences:profile")).toBe("focus");
+    act(() => window.dispatchEvent(storageEvent({ key: null, newValue: null, storageArea: window.localStorage })));
+    expect(screen.getByTestId("profile").textContent).toBe("general");
   });
 
   it("ignores a stale review response after switching accounts", async () => {

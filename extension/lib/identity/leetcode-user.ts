@@ -9,7 +9,7 @@ const MAX_ATTEMPTS = 3;
 const INITIAL_RETRY_DELAY_MS = 1000;
 const MAX_RETRY_DELAY_MS = 8000;
 
-const USER_STATUS_QUERY = `query leetledgerUserStatus {
+const USER_STATUS_QUERY = `query algomoraUserStatus {
   userStatus { isSignedIn username }
 }`;
 

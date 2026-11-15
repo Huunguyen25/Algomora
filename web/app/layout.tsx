@@ -15,18 +15,18 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "LeetLedger",
-    template: "%s · LeetLedger",
+    default: "Algomora",
+    template: "%s · Algomora",
   },
   description:
     "A focused spaced-repetition and mastery workspace for LeetCode.",
 };
 
+// Apply the saved theme before hydration to avoid a flash of the default theme.
 const themeScript = `
   try {
-    const saved = localStorage.getItem("leetledger-theme");
-    document.documentElement.dataset.theme =
-      saved === "light" || saved === "dark" ? saved : "dark";
+    const saved = localStorage.getItem("dashboard:preferences:theme");
+    document.documentElement.dataset.theme = saved === "light" ? "light" : "dark";
   } catch (_) {
     document.documentElement.dataset.theme = "dark";
   }

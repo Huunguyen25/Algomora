@@ -2,10 +2,8 @@ import { defineConfig } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-  // Dedicated HMR port (not 3000): constants.DASHBOARD_URL defaults to the
-  // Next.js app on :3000. If WXT silently bumps to :3001 while Chrome still
-  // has CSP for :3000, popup scripts are blocked and the UI goes blank.
-  // Setting port enables strictPort — conflict fails loudly instead.
+  // Keep extension HMR on :5173, separate from the dashboard on :3001
+  // (constants.DASHBOARD_URL). A fixed port also keeps its CSP origin stable.
   dev: {
     server: {
       port: 5173,
@@ -32,6 +30,13 @@ export default defineConfig({
   },
   modules: ["@wxt-dev/module-react"],
   manifest: {
+    name: "Algomora",
+    short_name: "Algomora",
+    action: {
+      // Let the browser scale the original for the toolbar's display density.
+      default_icon: "icon/2048.png",
+    },
+    description: "Algomora — track LeetCode submissions and build mastery with spaced repetition.",
     // Interception is done by wrapping window.fetch in the injected bridge,
     // so only storage is needed (no webRequest).
     // "tabs" lets startLogin() focus an existing login tab instead of spawning

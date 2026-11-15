@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/brand-mark";
 import type { FormEvent } from "react";
 import "../otp-verify/otp-verify.css";
 
@@ -24,10 +25,8 @@ export function EmailSignInScreen({
     <div className="signin-page">
       <div className="signin-panel">
         <div className="signin-brand">
-          <span className="brand-mark" aria-hidden="true">
-            LL
-          </span>
-          <span className="brand-name">LeetLedger</span>
+          <BrandMark />
+          <span className="brand-name">Algomora</span>
         </div>
         <h1>Sign in</h1>
         <p className="signin-lead">

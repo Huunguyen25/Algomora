@@ -78,10 +78,27 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const currentUserId = useRef<string | null>(null);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("leetledger-profile");
-    if (!saved || !PROFILES.some((profile) => profile.id === saved)) return;
-    const frame = window.requestAnimationFrame(() => setProfileId(saved));
-    return () => window.cancelAnimationFrame(frame);
+    const applyProfile = (value: string | null) => {
+      setProfileId(PROFILES.find((profile) => profile.id === value)?.id ?? "general");
+    };
+    const frame = window.requestAnimationFrame(() => {
+      try {
+        applyProfile(window.localStorage.getItem("dashboard:preferences:profile"));
+      } catch {
+        // Keep the default profile when storage is unavailable.
+      }
+    });
+    const onStorage = (event: StorageEvent) => {
+      if (event.storageArea !== window.localStorage) return;
+      if (event.key === null || event.key === "dashboard:preferences:profile") {
+        applyProfile(event.newValue);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("storage", onStorage);
+    };
   }, []);
 
   useEffect(() => {
@@ -187,7 +204,11 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
 
   const setActiveProfileId = useCallback((id: string) => {
     setProfileId(id);
-    window.localStorage.setItem("leetledger-profile", id);
+    try {
+      window.localStorage.setItem("dashboard:preferences:profile", id);
+    } catch {
+      // The current tab can still change profiles without persistence.
+    }
   }, []);
 
   const openProblem = useCallback((problem: ProblemReview) => {

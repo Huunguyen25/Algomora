@@ -43,4 +43,4 @@ jobs:
           .output/*-chrome.zip
           --prerelease
           --generate-notes
-          --title "LeetLedger ${GITHUB_REF_NAME}"
+          --title "Algomora ${GITHUB_REF_NAME}"

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The dashboard reads reviews and code timelines created by the LeetLedger
+The dashboard reads reviews and code timelines created by the Algomora
 extension. Both clients use the same Supabase account but keep separate sessions.
 
 ## Structure

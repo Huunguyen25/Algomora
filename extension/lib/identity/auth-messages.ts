@@ -29,7 +29,7 @@ export function authToastMessage(reasons: IdentityFailureReason[]): string {
     return "Sign in to LeetCode to resume automated ledger tracking.";
   }
   if (extensionMissing) {
-    return "Open the LeetLedger extension popup to sign in before tracking can resume.";
+    return "Open the Algomora extension popup to sign in before tracking can resume.";
   }
   return "Sign in to resume automated ledger tracking.";
 }
@@ -37,4 +37,4 @@ export function authToastMessage(reasons: IdentityFailureReason[]): string {
 export const ACCOUNT_CHANGED_KEY = "account_changed";
 
 export const ACCOUNT_CHANGED_MESSAGE =
-  "Your LeetCode or LeetLedger account changed. Reload the page to resume tracking.";
+  "Your LeetCode or Algomora account changed. Reload the page to resume tracking.";

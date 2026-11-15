@@ -1,4 +1,4 @@
-# LeetLedger Dashboard — Public Soft-Launch Gates
+# Algomora Dashboard — Public Soft-Launch Gates
 
 Scope: the five useful dashboard sections—Overview, Problems, Reviews,
 History, and Insights. Unified extension/website sessions, extension detection,

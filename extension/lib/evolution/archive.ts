@@ -18,7 +18,7 @@ import { checksumCode, reconstructCode, verifyTimelineIntegrity } from "./timeli
 
 /**
  * Durable backup for accepted sessions: gzip the snapshot chain, upload it to a
- * private Supabase bucket, and restore it if LeetLedger's IndexedDB is ever
+ * private Supabase bucket, and restore it if Algomora's IndexedDB is ever
  * cleared. Local data is only ever marked archived after a confirmed upload.
  */
 
@@ -76,7 +76,7 @@ export function upgradeArchive(value: unknown): ArchiveUpgradeResult {
       return {
         ok: false,
         reason: "unsupported_version",
-        message: `Archive version ${version} cannot step up to ${ARCHIVE_VERSION} (missing migrator). Re-download after upgrading LeetLedger, or restore from a newer backup.`,
+        message: `Archive version ${version} cannot step up to ${ARCHIVE_VERSION} (missing migrator). Re-download after upgrading Algomora, or restore from a newer backup.`,
       };
     }
     archive = migrate(archive);
@@ -87,7 +87,7 @@ export function upgradeArchive(value: unknown): ArchiveUpgradeResult {
     return {
       ok: false,
       reason: "unsupported_version",
-      message: `Archive version ${version} is newer than this extension (current=${ARCHIVE_VERSION}). Update LeetLedger to restore it.`,
+      message: `Archive version ${version} is newer than this extension (current=${ARCHIVE_VERSION}). Update Algomora to restore it.`,
     };
   }
 

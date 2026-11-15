@@ -1,20 +1,34 @@
 {
-  "name": "leetledger-extension",
+  "name": "algomora-extension",
   "description": "Local-first LeetCode submission tracking and review extension",
   "private": true,
   "version": "0.1.0-beta.1",
   "type": "module",
-  "scripts": {
+    "scripts": {
     "dev": "wxt",
+    "predev": "wxt prepare",
+
     "dev:firefox": "wxt -b firefox",
+    "predev:firefox": "wxt prepare",
+
     "build": "wxt build",
+    "prebuild": "wxt prepare",
+
     "build:firefox": "wxt build -b firefox",
+    "prebuild:firefox": "wxt prepare",
+
     "zip": "wxt zip",
     "zip:firefox": "wxt zip -b firefox",
+
     "compile": "tsc --noEmit",
+    "precompile": "wxt prepare",
+
+    "pretest": "wxt prepare",
     "test": "vitest run",
     "test:watch": "vitest",
+
     "postinstall": "wxt prepare",
+
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
@@ -41,5 +55,8 @@
     "typescript-eslint": "^8.68.0",
     "vitest": "^4.0.18",
     "wxt": "^0.20.6"
+  },
+  "allowScripts": {
+    "esbuild@0.27.2": true
   }
 }

@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/brand-mark";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import { EmailSignInScreen } from "@/components/auth/email-signin";
 import {
@@ -36,7 +37,7 @@ function AuthCard({
     <div className="login-shell">
       <div className={`auth${centered ? " auth-centered" : ""}`}>
         <header className="auth-header">
-          <p className="auth-brand">LeetLedger</p>
+          <p className="auth-brand brand-heading"><BrandMark />Algomora</p>
           <h1 className="auth-title">{title}</h1>
           {subtitle ? <p className="auth-subtitle">{subtitle}</p> : null}
         </header>

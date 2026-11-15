@@ -89,7 +89,7 @@ const constants = {
    */
   DASHBOARD_URL:
     (import.meta.env.WXT_DASHBOARD_URL as string | undefined) ??
-    "http://localhost:3000",
+    "http://localhost:3001",
 };
 
 export default constants;

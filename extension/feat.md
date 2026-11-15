@@ -1,4 +1,4 @@
-# LeetLedger Extension — Session Summary
+# Algomora Extension — Session Summary
 
 > Code-review handoff for work completed in this session. Use this to walk the diff and pick up where we left off.
 

@@ -133,7 +133,7 @@ export function clearDashboardMemoryCaches(userId?: string) {
 
 export function readCachedReviews(userId: string) {
   try {
-    const raw = window.localStorage.getItem(`leetledger-reviews:${userId}`);
+    const raw = window.localStorage.getItem(`dashboard:reviews:${userId}`);
     if (!raw) return null;
     const cached = JSON.parse(raw) as CachedReviews;
     if (cached.userId !== userId || !Array.isArray(cached.reviews)) return null;
@@ -165,10 +165,12 @@ export async function listDashboardReviews(userId: string) {
     storedAt: Date.now(),
     reviews,
   };
-  window.localStorage.setItem(
-    `leetledger-reviews:${userId}`,
-    JSON.stringify(cache),
-  );
+  // Caching is optional: storage failures must never discard a successful fetch.
+  try {
+    window.localStorage.setItem(`dashboard:reviews:${userId}`, JSON.stringify(cache));
+  } catch {
+    // Private browsing, quota, and blocked storage do not affect live reviews.
+  }
   return reviews;
 }
 

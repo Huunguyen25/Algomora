@@ -26,7 +26,7 @@
 
 .brand-email {
   font-size: 0.78rem;
-  color: var(--ll-muted);
+  color: var(--am-muted);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -46,7 +46,7 @@
 }
 
 .action-btn:first-child {
-  background: var(--ll-accent);
+  background: var(--am-accent);
   color: #1a1a1a;
   font-weight: 600;
   border: none;

@@ -1,7 +1,7 @@
 .panel {
-  border: 1px solid var(--ll-border);
+  border: 1px solid var(--am-border);
   border-radius: 10px;
-  background: var(--ll-surface);
+  background: var(--am-surface);
   padding: 0.75rem;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--ll-muted);
+  color: var(--am-muted);
   margin: 0;
 }
 
@@ -25,18 +25,18 @@
 
 .history-refreshing {
   font-size: 0.72rem;
-  color: var(--ll-muted);
+  color: var(--am-muted);
 }
 
 .history-muted {
   margin: 0;
-  color: var(--ll-muted);
+  color: var(--am-muted);
   font-size: 0.85rem;
 }
 
 .history-error {
   margin: 0;
-  color: var(--ll-hard);
+  color: var(--am-hard);
   font-size: 0.85rem;
 }
 
@@ -55,7 +55,7 @@
   gap: 0.3rem;
   padding: 0.35em 0.6em;
   border-radius: 999px;
-  border: 1px solid var(--ll-border);
+  border: 1px solid var(--am-border);
   background: transparent;
   color: inherit;
   font-size: 0.75rem;
@@ -64,12 +64,12 @@
 }
 
 .history-tab:hover {
-  border-color: var(--ll-accent);
+  border-color: var(--am-accent);
 }
 
 .history-tab.active {
-  border-color: var(--ll-accent);
-  background: rgba(255, 161, 22, 0.12);
+  border-color: var(--am-accent);
+  background: rgba(0, 170, 255, 0.12);
 }
 
 .history-tab-dot {
@@ -80,15 +80,15 @@
 }
 
 .history-tab-dot[data-difficulty="easy"] {
-  background: var(--ll-easy);
+  background: var(--am-easy);
 }
 
 .history-tab-dot[data-difficulty="medium"] {
-  background: var(--ll-medium);
+  background: var(--am-medium);
 }
 
 .history-tab-dot[data-difficulty="hard"] {
-  background: var(--ll-hard);
+  background: var(--am-hard);
 }
 
 .history-tab-panel {
@@ -116,22 +116,22 @@
 }
 
 .history-difficulty[data-difficulty="easy"] {
-  color: var(--ll-easy);
+  color: var(--am-easy);
 }
 
 .history-difficulty[data-difficulty="medium"] {
-  color: var(--ll-medium);
+  color: var(--am-medium);
 }
 
 .history-difficulty[data-difficulty="hard"] {
-  color: var(--ll-hard);
+  color: var(--am-hard);
 }
 
 .history-meta {
   display: flex;
   justify-content: space-between;
   font-size: 0.76rem;
-  color: var(--ll-muted);
+  color: var(--am-muted);
 }
 
 .history-incomplete {
@@ -145,7 +145,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-  color: var(--ll-muted);
+  color: var(--am-muted);
 }
 
 .history-incomplete ul {
@@ -167,7 +167,7 @@
 
 .history-action {
   flex-shrink: 0;
-  border: 1px solid var(--ll-border);
+  border: 1px solid var(--am-border);
   background: transparent;
   border-radius: 6px;
   padding: 0.25rem 0.5rem;
