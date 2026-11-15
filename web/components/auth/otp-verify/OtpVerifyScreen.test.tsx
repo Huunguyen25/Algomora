@@ -67,7 +67,7 @@ describe('OTP inputs', () => {
     expect((screen.getByRole('button', { name: 'Verify code' }) as HTMLButtonElement).disabled).toBe(true);
   });
 
-  it('does not retry a failed code until the user edits it', () => {
+  it('lets users correct filled codes manually and rearms only after an incomplete entry', () => {
     const verify = vi.fn((event) => event.preventDefault());
     const props = {
       email: 'test@example.com', code: '123456', onCodeChange: vi.fn(),
@@ -78,9 +78,14 @@ describe('OTP inputs', () => {
     rerender(<Otp {...props} busy="verify" />);
     rerender(<Otp {...props} busy={null} error="Invalid code" />);
     expect(verify).toHaveBeenCalledOnce();
+    rerender(<Otp {...props} code="923456" busy={null} />);
+    rerender(<Otp {...props} code="983456" busy={null} />);
+    expect(verify).toHaveBeenCalledOnce();
+    fireEvent.click(screen.getByRole('button', { name: 'Verify code' }));
+    expect(verify).toHaveBeenCalledTimes(2);
     rerender(<Otp {...props} code="12345" busy={null} />);
     rerender(<Otp {...props} busy={null} />);
-    expect(verify).toHaveBeenCalledTimes(2);
+    expect(verify).toHaveBeenCalledTimes(3);
   });
 
   it('supports arrow navigation and disables every box during verification', () => {

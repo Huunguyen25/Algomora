@@ -67,12 +67,9 @@ export function DashboardDataNotice({
     if (!onboarding || !sessionUserId) return;
     const frame = window.requestAnimationFrame(() => {
       setOnboardingDismissed(
-        (window.localStorage.getItem(
-          `algomora-onboarding-dismissed:${sessionUserId}`,
-        ) ??
-          window.localStorage.getItem(
-            `leetledger-onboarding-dismissed:${sessionUserId}`,
-          )) === "1",
+        window.localStorage.getItem(
+          `dashboard:onboarding-dismissed:${sessionUserId}`,
+        ) === "1",
       );
       setSetupRequested(
         new URLSearchParams(window.location.search).get("setup") === "1",
@@ -95,7 +92,7 @@ export function DashboardDataNotice({
   function dismissOnboarding() {
     if (sessionUserId) {
       window.localStorage.setItem(
-        `algomora-onboarding-dismissed:${sessionUserId}`,
+        `dashboard:onboarding-dismissed:${sessionUserId}`,
         "1",
       );
     }

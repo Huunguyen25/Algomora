@@ -37,19 +37,20 @@ export function OtpVerifyScreen({
   const hintId = useId();
   const errorId = useId();
   const form = useRef<HTMLFormElement>(null);
-  const lastAutoSubmittedCode = useRef<string | null>(null);
+  const hasAutoSubmitted = useRef(false);
   const inputs = useRef<(HTMLInputElement | null)[]>([]);
   const digits = code.padEnd(6, " ").slice(0, 6).split("");
 
   // Submit after React commits the sixth digit so the host receives the latest code.
-  // Remember the attempt so an error or busy-state change cannot trigger a retry loop.
+  // Allow corrections after an attempt without submitting every changed digit.
+  // Becoming incomplete rearms automatic submission for the next completed entry.
   useEffect(() => {
     if (!/^\d{6}$/.test(code)) {
-      lastAutoSubmittedCode.current = null;
+      hasAutoSubmitted.current = false;
       return;
     }
-    if (busy !== null || lastAutoSubmittedCode.current === code) return;
-    lastAutoSubmittedCode.current = code;
+    if (busy !== null || hasAutoSubmitted.current) return;
+    hasAutoSubmitted.current = true;
     form.current?.requestSubmit();
   }, [code, busy]);
 

@@ -41,12 +41,9 @@ export function SignInForm() {
 
   useEffect(() => {
     try {
-      const signedOut =
-        window.sessionStorage.getItem("algomora-signed-out") ??
-        window.sessionStorage.getItem("leetledger-signed-out");
+      const signedOut = window.sessionStorage.getItem("dashboard:signed-out");
       if (signedOut !== "1") return;
-      window.sessionStorage.removeItem("algomora-signed-out");
-      window.sessionStorage.removeItem("leetledger-signed-out");
+      window.sessionStorage.removeItem("dashboard:signed-out");
       setSignedOutNotice(true);
     } catch {
       // Ignore storage access failures.

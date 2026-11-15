@@ -2,10 +2,8 @@ import { defineConfig } from "wxt";
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-  // Dedicated HMR port (not 3000): constants.DASHBOARD_URL defaults to the
-  // Next.js app on :3000. If WXT silently bumps to :3001 while Chrome still
-  // has CSP for :3000, popup scripts are blocked and the UI goes blank.
-  // Setting port enables strictPort — conflict fails loudly instead.
+  // Keep extension HMR on :5173, separate from the dashboard on :3001
+  // (constants.DASHBOARD_URL). A fixed port also keeps its CSP origin stable.
   dev: {
     server: {
       port: 5173,

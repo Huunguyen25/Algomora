@@ -50,22 +50,34 @@ function ShellContent({ children }: { children: ReactNode }) {
     )?.label ?? "Overview";
 
   useEffect(() => {
-    const savedCollapsed =
-      (window.localStorage.getItem("algomora-sidebar") ??
-        window.localStorage.getItem("leetledger-sidebar")) === "collapsed";
-    const savedTheme =
-      document.documentElement.dataset.theme === "light" ? "light" : "dark";
     const frame = window.requestAnimationFrame(() => {
-      setCollapsed(savedCollapsed);
-      setTheme(savedTheme);
+      try {
+        setCollapsed(window.localStorage.getItem("dashboard:preferences:sidebar") === "collapsed");
+      } catch {
+        // Keep the default when storage is unavailable.
+      }
+      setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
       setOnline(window.navigator.onLine);
     });
+    const onStorage = (event: StorageEvent) => {
+      if (event.storageArea !== window.localStorage) return;
+      if (event.key === null || event.key === "dashboard:preferences:sidebar") {
+        setCollapsed(event.newValue === "collapsed");
+      }
+      if (event.key === null || event.key === "dashboard:preferences:theme") {
+        const next = event.newValue === "light" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        setTheme(next);
+      }
+    };
+    window.addEventListener("storage", onStorage);
     const onOnline = () => setOnline(true);
     const onOffline = () => setOnline(false);
     window.addEventListener("online", onOnline);
     window.addEventListener("offline", onOffline);
     return () => {
       window.cancelAnimationFrame(frame);
+      window.removeEventListener("storage", onStorage);
       window.removeEventListener("online", onOnline);
       window.removeEventListener("offline", onOffline);
     };
@@ -146,19 +158,23 @@ function ShellContent({ children }: { children: ReactNode }) {
   }, [isSignInRoute]);
 
   function toggleCollapsed() {
-    setCollapsed((value) => {
-      window.localStorage.setItem(
-        "algomora-sidebar",
-        value ? "expanded" : "collapsed",
-      );
-      return !value;
-    });
+    const next = !collapsed;
+    try {
+      window.localStorage.setItem("dashboard:preferences:sidebar", next ? "collapsed" : "expanded");
+    } catch {
+      // The current tab can still toggle without persistence.
+    }
+    setCollapsed(next);
   }
 
   function toggleTheme() {
     const next = theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
-    window.localStorage.setItem("algomora-theme", next);
+    try {
+      window.localStorage.setItem("dashboard:preferences:theme", next);
+    } catch {
+      // The current tab can still toggle without persistence.
+    }
     setTheme(next);
   }
 
@@ -172,7 +188,7 @@ function ShellContent({ children }: { children: ReactNode }) {
   async function onSignOut() {
     setAuthBusy(true);
     try {
-      window.sessionStorage.setItem("algomora-signed-out", "1");
+      window.sessionStorage.setItem("dashboard:signed-out", "1");
       await signOut();
       setAccountOpen(false);
       router.replace("/signin");
