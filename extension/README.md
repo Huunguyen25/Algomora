@@ -1,4 +1,4 @@
-# LeetLedger extension
+# Algomora extension
 
 Browser extension (WXT + React) for **leetcode.com**. When you get an **Accepted** submission, it can capture context, open a quick **review** UI on the page, and **track** problems and revisit timing. Optional **Supabase** sync backs up cloud-side data.
 

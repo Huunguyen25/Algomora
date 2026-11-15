@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand-mark";
 import { useRouter } from "next/navigation";
 import { useEffect, useState, type FormEvent } from "react";
 import {
@@ -40,7 +41,11 @@ export function SignInForm() {
 
   useEffect(() => {
     try {
-      if (window.sessionStorage.getItem("leetledger-signed-out") !== "1") return;
+      const signedOut =
+        window.sessionStorage.getItem("algomora-signed-out") ??
+        window.sessionStorage.getItem("leetledger-signed-out");
+      if (signedOut !== "1") return;
+      window.sessionStorage.removeItem("algomora-signed-out");
       window.sessionStorage.removeItem("leetledger-signed-out");
       setSignedOutNotice(true);
     } catch {
@@ -154,10 +159,8 @@ export function SignInForm() {
     <div className="signin-page">
       <div className="signin-panel">
         <div className="signin-brand">
-          <span className="brand-mark" aria-hidden="true">
-            LL
-          </span>
-          <span className="brand-name">LeetLedger</span>
+          <BrandMark />
+          <span className="brand-name">Algomora</span>
         </div>
         <h1>Sign in</h1>
         <p className="signin-lead">

@@ -78,7 +78,9 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
   const currentUserId = useRef<string | null>(null);
 
   useEffect(() => {
-    const saved = window.localStorage.getItem("leetledger-profile");
+    const saved =
+      window.localStorage.getItem("algomora-profile") ??
+      window.localStorage.getItem("leetledger-profile");
     if (!saved || !PROFILES.some((profile) => profile.id === saved)) return;
     const frame = window.requestAnimationFrame(() => setProfileId(saved));
     return () => window.cancelAnimationFrame(frame);
@@ -187,7 +189,7 @@ export function DashboardProvider({ children }: { children: ReactNode }) {
 
   const setActiveProfileId = useCallback((id: string) => {
     setProfileId(id);
-    window.localStorage.setItem("leetledger-profile", id);
+    window.localStorage.setItem("algomora-profile", id);
   }, []);
 
   const openProblem = useCallback((problem: ProblemReview) => {

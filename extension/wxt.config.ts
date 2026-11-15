@@ -32,6 +32,13 @@ export default defineConfig({
   },
   modules: ["@wxt-dev/module-react"],
   manifest: {
+    name: "Algomora",
+    short_name: "Algomora",
+    action: {
+      // Let the browser scale the original for the toolbar's display density.
+      default_icon: "icon/2048.png",
+    },
+    description: "Algomora — track LeetCode submissions and build mastery with spaced repetition.",
     // Interception is done by wrapping window.fetch in the injected bridge,
     // so only storage is needed (no webRequest).
     // "tabs" lets startLogin() focus an existing login tab instead of spawning

@@ -3,7 +3,7 @@
 }
 
 .marked-slider {
-  --slider-accent: #ffa116;
+  --slider-accent: #00aaff;
   --slider-track: #e8eaed;
   --slider-ink: #1a1a1a;
   user-select: none;
@@ -27,7 +27,7 @@
 }
 
 .marked-slider .slider-track:focus-visible {
-  box-shadow: 0 0 0 3px rgba(255, 161, 22, 0.35);
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.35);
   border-radius: 12px;
 }
 
@@ -51,7 +51,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  background: linear-gradient(90deg, #ffb84d, var(--slider-accent));
+  background: linear-gradient(90deg, #66ccff, var(--slider-accent));
   border-radius: 12px;
   pointer-events: none;
 }

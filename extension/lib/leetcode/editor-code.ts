@@ -10,7 +10,7 @@ import { readQuestionIdMap } from "@/lib/leetcode/question-id-map";
  * LeetCode's undocumented database name, store name, and record-key format is
  * confined to this module, so a LeetCode schema change is a one-file fix.
  *
- * LeetLedger must never create, upgrade, or write this database.
+ * Algomora must never create, upgrade, or write this database.
  */
 
 const LEETCODE_DB_NAME = "LeetCode-problems";
@@ -20,7 +20,7 @@ const CODE_KEY_PATTERN = /^(\d+)_(\d+)_(.+)$/;
 const LANGUAGE_STORAGE_PATTERN = /^global_lang/;
 const QUESTION_ID_TIMEOUT_MS = 3000;
 
-const QUESTION_ID_QUERY = `query leetledgerQuestionId($titleSlug: String!) {
+const QUESTION_ID_QUERY = `query algomoraQuestionId($titleSlug: String!) {
   question(titleSlug: $titleSlug) { questionId }
 }`;
 
@@ -99,7 +99,7 @@ export async function resolveQuestionId(
       credentials: "include",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        operationName: "leetledgerQuestionId",
+        operationName: "algomoraQuestionId",
         variables: { titleSlug: problemSlug },
         query: QUESTION_ID_QUERY,
       }),

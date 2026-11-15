@@ -67,9 +67,12 @@ export function DashboardDataNotice({
     if (!onboarding || !sessionUserId) return;
     const frame = window.requestAnimationFrame(() => {
       setOnboardingDismissed(
-        window.localStorage.getItem(
-          `leetledger-onboarding-dismissed:${sessionUserId}`,
-        ) === "1",
+        (window.localStorage.getItem(
+          `algomora-onboarding-dismissed:${sessionUserId}`,
+        ) ??
+          window.localStorage.getItem(
+            `leetledger-onboarding-dismissed:${sessionUserId}`,
+          )) === "1",
       );
       setSetupRequested(
         new URLSearchParams(window.location.search).get("setup") === "1",
@@ -84,15 +87,15 @@ export function DashboardDataNotice({
       setOnboardingDismissed(false);
       setSetupRequested(true);
     };
-    window.addEventListener("leetledger:open-setup", openSetup);
+    window.addEventListener("algomora:open-setup", openSetup);
     return () =>
-      window.removeEventListener("leetledger:open-setup", openSetup);
+      window.removeEventListener("algomora:open-setup", openSetup);
   }, [onboarding]);
 
   function dismissOnboarding() {
     if (sessionUserId) {
       window.localStorage.setItem(
-        `leetledger-onboarding-dismissed:${sessionUserId}`,
+        `algomora-onboarding-dismissed:${sessionUserId}`,
         "1",
       );
     }
@@ -116,7 +119,7 @@ export function DashboardDataNotice({
   } else if (dataStatus === "signed-out") {
     notice = (
       <div className="notice data-notice">
-        <strong>Sign in to load your LeetLedger data.</strong>{" "}
+        <strong>Sign in to load your Algomora data.</strong>{" "}
         <Link href="/signin">Go to the sign-in page</Link> and use the same
         email as the extension.
       </div>
@@ -162,7 +165,7 @@ export function DashboardDataNotice({
         <div className="onboarding-heading">
           <div>
             <span className="eyebrow">First-time setup</span>
-            <h2 id="onboarding-title">Start tracking with LeetLedger</h2>
+            <h2 id="onboarding-title">Start tracking with Algomora</h2>
             <p>
               The dashboard fills up after the browser extension saves your
               first review.
@@ -208,7 +211,7 @@ export function DashboardDataNotice({
             Check for reviews
           </button>
           <span>
-            Already using LeetLedger? Confirm both apps use the same email.
+            Already using Algomora? Confirm both apps use the same email.
           </span>
         </div>
       </section>

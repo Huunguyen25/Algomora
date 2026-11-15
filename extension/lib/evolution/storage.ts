@@ -6,11 +6,12 @@ import type {
 import { checksumCode } from "./timeline";
 
 /**
- * LeetLedger's own IndexedDB: one `timelines` store where each record is a
+ * Algomora's own IndexedDB: one `timelines` store where each record is a
  * bounded solving session. Every read-modify-write happens inside a single
  * transaction so concurrent tabs cannot interleave partial updates.
  */
 
+// Retain the original database name so existing solving timelines remain available.
 const DB_NAME = "LeetLedgerLocal";
 /**
  * Bump when object-store shape changes. `upgrade()` must handle every step
@@ -110,7 +111,7 @@ export function openTimelineDb(): Promise<IDBDatabase> {
       );
     request.onerror = () => reject(request.error);
     request.onblocked = () =>
-      reject(new Error("LeetLedger timeline upgrade blocked by another tab"));
+      reject(new Error("Algomora timeline upgrade blocked by another tab"));
     request.onsuccess = () => {
       const db = request.result;
       db.onversionchange = () => {

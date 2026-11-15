@@ -1,13 +1,13 @@
-# LeetLedger dashboard
+# Algomora dashboard
 
-The LeetLedger dashboard displays reviews and code timelines created by the
-LeetLedger browser extension. The extension and dashboard use separate browser
+The Algomora dashboard displays reviews and code timelines created by the
+Algomora browser extension. The extension and dashboard use separate browser
 sessions, but users must sign into both with the same Supabase email account.
 
 ## Local setup
 
 Requirements: Node.js 20+, npm, and a Supabase project containing the
-LeetLedger `reviews` table and private `code-timelines` Storage bucket.
+Algomora `reviews` table and private `code-timelines` Storage bucket.
 
 ```bash
 cp .env.example .env.local
@@ -22,7 +22,7 @@ NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Useful checks:
+Open [http://localhost:3001](http://localhost:3001). Useful checks:
 
 ```bash
 make compile

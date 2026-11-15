@@ -11,14 +11,14 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
-  --ll-surface: rgba(255, 255, 255, 0.04);
-  --ll-surface-black: #242424;
-  --ll-border: rgba(255, 255, 255, 0.12);
-  --ll-accent: #ffa116;
-  --ll-muted: #8b8b8b;
-  --ll-easy: #00b8a3;
-  --ll-medium: #ffa116;
-  --ll-hard: #ff375f;
+  --am-surface: rgba(255, 255, 255, 0.04);
+  --am-surface-black: #242424;
+  --am-border: rgba(255, 255, 255, 0.12);
+  --am-accent: #00aaff;
+  --am-muted: #8b8b8b;
+  --am-easy: #00b8a3;
+  --am-medium: #00aaff;
+  --am-hard: #ff375f;
 }
 
 body {
@@ -30,13 +30,13 @@ body {
 }
 
 a {
-  color: #646cff;
+  color: #00aaff;
   font-weight: 500;
   text-decoration: inherit;
 }
 
 a:hover {
-  color: #535bf2;
+  color: #0077b3;
 }
 
 button {
@@ -51,7 +51,7 @@ button {
 }
 
 button:hover {
-  border-color: #646cff;
+  border-color: #00aaff;
 }
 
 button:focus,
@@ -84,7 +84,7 @@ button:focus-visible {
 
 .auth-subtitle {
   margin: -0.25rem 0 0;
-  color: var(--ll-muted);
+  color: var(--am-muted);
   font-size: 0.85rem;
   line-height: 1.45;
 }
@@ -93,7 +93,7 @@ button:focus-visible {
   width: 100%;
   padding: 0.7em 1em;
   border: none;
-  background: var(--ll-accent);
+  background: var(--am-accent);
   color: #1a1a1a;
   font-weight: 600;
 }
@@ -115,7 +115,7 @@ button:focus-visible {
   }
 
   a:hover {
-    color: #747bff;
+    color: #0077b3;
   }
 
   button {
@@ -123,7 +123,20 @@ button:focus-visible {
   }
 
   .auth-submit {
-    background: var(--ll-accent);
+    background: var(--am-accent);
     color: #1a1a1a;
   }
+}
+
+.brand-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-mark {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
 }

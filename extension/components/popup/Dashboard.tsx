@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/brand-mark";
 import type { Session } from "@supabase/supabase-js";
 import constants from "@/constants";
 import { maskEmail } from "@/lib/identity/mask-email";
@@ -28,7 +29,7 @@ export default function Dashboard({
     <div className="dashboard">
       <header className="dashboard-header">
         <div className="brand">
-          <span className="brand-name">LeetLedger</span>
+          <span className="brand-heading"><BrandMark /><span className="brand-name">Algomora</span></span>
           <span className="brand-email" title={session.user.email ?? undefined}>
             {accountLabel}
           </span>

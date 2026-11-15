@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "LeetLedger",
-    template: "%s · LeetLedger",
+    default: "Algomora",
+    template: "%s · Algomora",
   },
   description:
     "A focused spaced-repetition and mastery workspace for LeetCode.",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 const themeScript = `
   try {
-    const saved = localStorage.getItem("leetledger-theme");
+    const saved = (localStorage.getItem("algomora-theme") ?? localStorage.getItem("leetledger-theme"));
     document.documentElement.dataset.theme =
       saved === "light" || saved === "dark" ? saved : "dark";
   } catch (_) {

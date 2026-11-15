@@ -9,7 +9,7 @@
   background:
     radial-gradient(
       ellipse 80% 50% at 50% -10%,
-      var(--accent-soft, rgba(255, 161, 22, 0.14)),
+      var(--accent-soft, rgba(0, 170, 255, 0.14)),
       transparent
     ),
     var(--bg, #141414);
@@ -39,13 +39,6 @@
   height: 34px;
   flex: 0 0 34px;
   place-items: center;
-  border: 1px solid var(--border-strong, rgba(255, 255, 255, 0.2));
-  border-radius: 10px;
-  background: var(--accent-soft, rgba(255, 161, 22, 0.14));
-  color: var(--accent-2, #ffb84d);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
 }
 
 .signin-brand .brand-name {
@@ -108,21 +101,55 @@
 }
 
 .signin-form input:focus {
-  border-color: var(--accent, #ffa116);
-  box-shadow: 0 0 0 3px var(--accent-soft, rgba(255, 161, 22, 0.14));
+  border-color: var(--accent, #00aaff);
+  box-shadow: 0 0 0 3px var(--accent-soft, rgba(0, 170, 255, 0.14));
+}
+
+.otp-field {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.otp-field legend {
+  margin-bottom: 8px;
+  padding: 0;
+  color: var(--muted, #8b8b8b);
+  font-size: 12px;
+}
+
+.otp-inputs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 48px));
+  justify-content: center;
+  gap: 8px;
 }
 
 .signin-form .otp-code {
-  padding-left: 0.85em;
+  min-width: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  padding: 0;
+  border-radius: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 24px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.35em;
   text-align: center;
+  caret-color: var(--accent, #00aaff);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
 }
 
-.signin-form .otp-code::placeholder {
-  color: rgba(255, 255, 255, 0.22);
-  letter-spacing: 0.35em;
+.signin-form .otp-code[aria-invalid="true"] {
+  border-color: var(--hard, #ff375f);
+}
+
+.signin-form .otp-code:disabled {
+  opacity: 0.55;
+  cursor: wait;
 }
 
 .signin-hint {
@@ -139,6 +166,17 @@
   color: var(--hard, #ff375f);
   font-size: 12px;
   text-align: center;
+  caret-color: var(--accent, #00aaff);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.signin-form .otp-code[aria-invalid="true"] {
+  border-color: var(--hard, #ff375f);
+}
+
+.signin-form .otp-code:disabled {
+  opacity: 0.55;
+  cursor: wait;
 }
 
 .signin-submit {
@@ -148,9 +186,9 @@
   align-items: center;
   justify-content: center;
   padding: 0 12px;
-  border: 1px solid var(--accent, #ffa116);
+  border: 1px solid var(--accent, #00aaff);
   border-radius: 9px;
-  background: var(--accent, #ffa116);
+  background: var(--accent, #00aaff);
   color: var(--ink-on-accent, #1a1a1a);
   font: inherit;
   font-size: 14px;
@@ -204,7 +242,7 @@ html[data-theme="light"] .signin-page {
   background:
     radial-gradient(
       ellipse 80% 50% at 50% -10%,
-      var(--accent-soft, rgba(255, 161, 22, 0.14)),
+      var(--accent-soft, rgba(0, 170, 255, 0.14)),
       transparent
     ),
     var(--bg, #f3f4f6);
@@ -216,12 +254,6 @@ html[data-theme="light"] .signin-panel {
   box-shadow: var(--shadow, 0 8px 28px rgba(0, 0, 0, 0.12));
 }
 
-html[data-theme="light"] .signin-brand .brand-mark {
-  border-color: var(--border-strong, rgba(0, 0, 0, 0.14));
-  background: var(--accent-soft, rgba(255, 161, 22, 0.14));
-  color: var(--accent-2, #9a5b00);
-}
-
 html[data-theme="light"] .signin-brand .brand-name,
 html[data-theme="light"] .signin-panel > h1 {
   color: var(--text, #1f2937);
@@ -231,10 +263,6 @@ html[data-theme="light"] .signin-form input {
   border-color: var(--border, rgba(0, 0, 0, 0.08));
   background: var(--surface-2, #f9fafb);
   color: var(--text, #1f2937);
-}
-
-html[data-theme="light"] .signin-form .otp-code::placeholder {
-  color: rgba(0, 0, 0, 0.22);
 }
 
 html[data-theme="light"] .signin-link:hover:not(:disabled) {

@@ -133,7 +133,9 @@ export function clearDashboardMemoryCaches(userId?: string) {
 
 export function readCachedReviews(userId: string) {
   try {
-    const raw = window.localStorage.getItem(`leetledger-reviews:${userId}`);
+    const raw =
+      window.localStorage.getItem(`algomora-reviews:${userId}`) ??
+      window.localStorage.getItem(`leetledger-reviews:${userId}`);
     if (!raw) return null;
     const cached = JSON.parse(raw) as CachedReviews;
     if (cached.userId !== userId || !Array.isArray(cached.reviews)) return null;
@@ -166,7 +168,7 @@ export async function listDashboardReviews(userId: string) {
     reviews,
   };
   window.localStorage.setItem(
-    `leetledger-reviews:${userId}`,
+    `algomora-reviews:${userId}`,
     JSON.stringify(cache),
   );
   return reviews;

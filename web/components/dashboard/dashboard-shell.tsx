@@ -1,5 +1,6 @@
 "use client";
 
+import { BrandMark } from "@/components/brand-mark";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -50,7 +51,8 @@ function ShellContent({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const savedCollapsed =
-      window.localStorage.getItem("leetledger-sidebar") === "collapsed";
+      (window.localStorage.getItem("algomora-sidebar") ??
+        window.localStorage.getItem("leetledger-sidebar")) === "collapsed";
     const savedTheme =
       document.documentElement.dataset.theme === "light" ? "light" : "dark";
     const frame = window.requestAnimationFrame(() => {
@@ -146,7 +148,7 @@ function ShellContent({ children }: { children: ReactNode }) {
   function toggleCollapsed() {
     setCollapsed((value) => {
       window.localStorage.setItem(
-        "leetledger-sidebar",
+        "algomora-sidebar",
         value ? "expanded" : "collapsed",
       );
       return !value;
@@ -156,7 +158,7 @@ function ShellContent({ children }: { children: ReactNode }) {
   function toggleTheme() {
     const next = theme === "dark" ? "light" : "dark";
     document.documentElement.dataset.theme = next;
-    window.localStorage.setItem("leetledger-theme", next);
+    window.localStorage.setItem("algomora-theme", next);
     setTheme(next);
   }
 
@@ -170,7 +172,7 @@ function ShellContent({ children }: { children: ReactNode }) {
   async function onSignOut() {
     setAuthBusy(true);
     try {
-      window.sessionStorage.setItem("leetledger-signed-out", "1");
+      window.sessionStorage.setItem("algomora-signed-out", "1");
       await signOut();
       setAccountOpen(false);
       router.replace("/signin");
@@ -211,10 +213,8 @@ function ShellContent({ children }: { children: ReactNode }) {
         aria-label="Primary navigation"
       >
         <Link href="/" className="brand" onClick={() => setMobileOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">
-            LL
-          </span>
-          <span className="brand-name">LeetLedger</span>
+          <BrandMark />
+          <span className="brand-name">Algomora</span>
         </Link>
         <nav className="sidebar-nav">
           {navigation.map((item) => {
@@ -328,7 +328,7 @@ function ShellContent({ children }: { children: ReactNode }) {
                       onClick={() => {
                         setAccountOpen(false);
                         window.dispatchEvent(
-                          new Event("leetledger:open-setup"),
+                          new Event("algomora:open-setup"),
                         );
                       }}
                     >

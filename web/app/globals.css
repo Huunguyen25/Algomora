@@ -12,21 +12,21 @@
   --text: rgba(255, 255, 255, 0.9);
   --muted: #8b8b8b;
   --muted-2: #6b6b6b;
-  --accent: #ffa116;
-  --accent-2: #ffb84d;
-  --accent-soft: rgba(255, 161, 22, 0.14);
+  --accent: #00aaff;
+  --accent-2: #66ccff;
+  --accent-soft: rgba(0, 170, 255, 0.14);
   --overdue: #ff375f;
   --overdue-soft: rgba(255, 55, 95, 0.14);
-  --today: #ffa116;
-  --today-soft: rgba(255, 161, 22, 0.14);
-  --soon: #ffb84d;
-  --soon-soft: rgba(255, 184, 77, 0.14);
+  --today: #00aaff;
+  --today-soft: rgba(0, 170, 255, 0.14);
+  --soon: #66ccff;
+  --soon-soft: rgba(102, 204, 255, 0.14);
   --scheduled: #00b8a3;
   --scheduled-soft: rgba(0, 184, 163, 0.14);
   --unscheduled: #8b8b8b;
   --success: #00b8a3;
   --easy: #00b8a3;
-  --medium: #ffa116;
+  --medium: #00aaff;
   --hard: #ff375f;
   --ink-on-accent: #1a1a1a;
   --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
@@ -47,21 +47,21 @@ html[data-theme="light"] {
   --text: #1f2937;
   --muted: #6b7280;
   --muted-2: #9ca3af;
-  --accent: #ffa116;
-  --accent-2: #9a5b00;
-  --accent-soft: rgba(255, 161, 22, 0.14);
+  --accent: #00aaff;
+  --accent-2: #0077b3;
+  --accent-soft: rgba(0, 170, 255, 0.14);
   --overdue: #ff375f;
   --overdue-soft: rgba(255, 55, 95, 0.1);
-  --today: #ffa116;
-  --today-soft: rgba(255, 161, 22, 0.12);
-  --soon: #c47a00;
-  --soon-soft: rgba(196, 122, 0, 0.1);
+  --today: #00aaff;
+  --today-soft: rgba(0, 170, 255, 0.12);
+  --soon: #0077b3;
+  --soon-soft: rgba(0, 119, 179, 0.1);
   --scheduled: #00b8a3;
   --scheduled-soft: rgba(0, 184, 163, 0.1);
   --unscheduled: #6b7280;
   --success: #00b8a3;
   --easy: #00b8a3;
-  --medium: #ffa116;
+  --medium: #00aaff;
   --hard: #ff375f;
   --ink-on-accent: #1a1a1a;
   --shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
@@ -184,13 +184,6 @@ select:focus-visible {
   height: 34px;
   flex: 0 0 34px;
   place-items: center;
-  border: 1px solid var(--border-strong);
-  border-radius: 10px;
-  background: var(--accent-soft);
-  color: var(--accent-2);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
 }
 
 .brand-name {
@@ -1086,7 +1079,7 @@ select:focus-visible {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: linear-gradient(90deg, #ffb84d, var(--accent));
+  background: linear-gradient(90deg, #66ccff, var(--accent));
 }
 
 .topic-score {

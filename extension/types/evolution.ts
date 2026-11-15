@@ -54,7 +54,7 @@ export interface TimelineArchiveRef {
   archivedAt: number;
 }
 
-/** One solving session stored in LeetLedger's IndexedDB. */
+/** One solving session stored in Algomora's IndexedDB. */
 export interface TimelineRecord {
   /** `{scopeKey}|{sessionId}` */
   id: string;

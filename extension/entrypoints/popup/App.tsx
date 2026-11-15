@@ -1,3 +1,4 @@
+import { BrandMark } from "@/components/brand-mark";
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import Dashboard from "@/components/popup/Dashboard";
@@ -50,7 +51,7 @@ function App() {
   if (initializing) {
     return (
       <div className="auth">
-        <h1 className="auth-title">LeetLedger</h1>
+        <h1 className="auth-title brand-heading"><BrandMark />Algomora</h1>
         <p className="auth-subtitle">Loading…</p>
       </div>
     );
@@ -68,7 +69,7 @@ function App() {
 
   return (
     <div className="auth">
-      <h1 className="auth-title">LeetLedger</h1>
+      <h1 className="auth-title brand-heading"><BrandMark />Algomora</h1>
       <p className="auth-subtitle">Sign in to sync your reviews.</p>
       <button
         type="button"

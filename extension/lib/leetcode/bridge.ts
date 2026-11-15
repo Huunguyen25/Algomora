@@ -49,7 +49,7 @@ interface MetadataLoaderOptions {
   timeoutMs?: number;
 }
 
-const PROBLEM_METADATA_QUERY = `query leetledgerProblemMetadata($titleSlug: String!) {
+const PROBLEM_METADATA_QUERY = `query algomoraProblemMetadata($titleSlug: String!) {
   question(titleSlug: $titleSlug) {
     difficulty
     topicTags { name slug }
@@ -101,7 +101,7 @@ export function createProblemMetadataLoader(
           credentials: "include",
           headers,
           body: JSON.stringify({
-            operationName: "leetledgerProblemMetadata",
+            operationName: "algomoraProblemMetadata",
             variables: { titleSlug },
             query: PROBLEM_METADATA_QUERY,
           }),
